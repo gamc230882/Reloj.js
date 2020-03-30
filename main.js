@@ -5,7 +5,7 @@
           horas = fecha.getHours(),
           minutos = fecha.getMinutes(),
           segundos = fecha.getSeconds(),
-          // ampm,
+          ampm,
           diaSemana = fecha.getDay(),
           dia = fecha.getDate(),
           mes = fecha.getMonth(),
@@ -24,28 +24,46 @@
       var semana = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
           pDiaSemana.textContent = semana[diaSemana];
 
-          var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-              pMes.textContent = meses[mes];
+      var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+          pMes.textContent = meses[mes];
 
           pDia.textContent = dia;
 
           pYear.textContent = year;
 
-          pHoras.textContent = horas;
 
-          pMinutos.textContent = minutos;
+        if (horas >= 12) {            
+            horas =  horas -12;
+            ampm = "PM";
+        } else {
+            ampm = "AM";
+        }
+      
+        pAMPM.textContent = ampm;
 
-          pSegundos.textContent = segundos;
+        if (horas === 0){
+            horas === 12;
+        };
 
-          // pAMPM.textContent = ampm;
+        pHoras.textContent = horas;
+        
+        if (minutos < 10) {
+            minutos = "0" + minutos;
 
+        };
 
+        pMinutos.textContent = minutos;
 
+        if (segundos < 10) {
+            segundos = "0" + segundos;
+        };
 
+        pSegundos.textContent = segundos;
 
 
   };
 
   actualizarHora()
+    var intervalo = setInterval(actualizarHora, 1000);
 
 }());
